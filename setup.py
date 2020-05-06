@@ -6,8 +6,8 @@ setup(
     description='Gather Data via a REST-Connection from the Kontron AIS GmbH EquipmentCloud',
     author='Patrick Thiem',
     author_email='Patrick.Thiem@kontron-ais.com'
-    py_modules=["EqCloudRestApiWrapper"],
-    package_dir={'': 'src'},
+    py_modules=["PyEqCloud"],
+    package_dir={'': 'PyEqCloud'},
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
