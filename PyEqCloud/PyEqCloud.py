@@ -50,7 +50,7 @@ class EqCloudRestApiWrapper:
                          'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+'"'+"}",
                          'step':step
                          }
-                print(code)
+                #print(code)
                 response = requests.get(self.url + equipment + "/processvalues/" + columnList[i].strip().replace("'","") + "",
                                          auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                          params=code,
