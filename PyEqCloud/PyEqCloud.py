@@ -56,7 +56,7 @@ class EqCloudRestApiWrapper:
                                          params=code,
                                          verify=False)
                 json = response.json()
-                print(json)
+                #print(json)
                 df = pd.DataFrame.from_dict(json['items'])
                 #dd = pd.DataFrame.from_dict(json['controls'])
                 df['ChannelID'] = columnList[i].strip().replace("'","")
