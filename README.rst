@@ -38,7 +38,7 @@ User installation
 
 The easiest way to install PyEqCloud is using ``pip``   ::
 
-    pip install -U scikit-learn
+    pip install PyEqCloud
 
 Anaconda is not yet supported.
 
