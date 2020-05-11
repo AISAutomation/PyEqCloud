@@ -71,7 +71,8 @@ Following credential informations are needed to make REST requests:
 - username (registred Email-adress)
 - account password
 - customer ID (usually this ID is handed to the costumer via Email)
-  --> If the user is logged into a valid EquipmentCloud Account, the customer ID can also be found in the URL (bold number) https://eqcloud.ais-automation.com/**C168170000**/f?p=60000:LOGIN
+  --> If the user is logged into a valid EquipmentCloud Account, the customer ID can also be found in the URL (bold number in example) 
+  example: ``https://eqcloud.ais-automation.com/``**C168170000**/f?p=60000:LOGIN
 
 For more details, download or view the prepared jupyter notebook in folder "Jupyter".
 
