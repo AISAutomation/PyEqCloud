@@ -83,4 +83,4 @@ For more details, please download or see the prepared jupyter notebook in the fo
 Communication
 ~~~~~~~~~~~~~
 
-- Email: Patrick.Thiem@kontron-ais.com
+- Email: Patrick.Thiem@kontron-ais.com and Maik.Pertermann@kontron-ais.com
