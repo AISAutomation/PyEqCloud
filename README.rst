@@ -2,7 +2,7 @@
 PyEqCloud
 ============
 
-PyEqCloud is a Python module for data extraction via a REST connection with the EquipmentCloud of Kontron AIS GmbH.
+PyEqCloud is a Python module for data extraction with the EquipmentCloud of Kontron AIS GmbH using a REST connection.
 PyEqCloud is distributed under the MIT license.
 
 The project was started in April 2020 by Patrick Thiem and Maik Pertermann.
@@ -45,7 +45,7 @@ The easiest way to install PyEqCloud is using ``pip``   ::
 
     pip install PyEqCloud
 
-Anaconda is not yet supported.
+An Anaconda package is not yet supported.
 
 
 Important links
@@ -69,18 +69,18 @@ Help and Support
 How to use PyEqCloud?
 ~~~~~~~~~~~~~
 
-Following credential informations are needed to make REST requests:
+The following credential informations are needed to make REST requests:
 
-- username (registred Email-adress)
-- account password
-- customer ID (usually this ID is handed to the costumer via Email)
+- Username (registred Email-adress)
+- Account password
+- Customer ID (usually this ID is handed to the costumer via Email)
 --> If the user is logged into a valid EquipmentCloud Account, the customer ID can also be found in the URL (bold number in example) 
 example: https:// eqcloud.ais-automation.com/**C168170000**/f?p=60000:LOGIN
 
-For more details, download or view the prepared jupyter notebook in folder "Jupyter".
+For more details, please download or see the prepared jupyter notebook in the folder "Jupyter".
 
 
 Communication
 ~~~~~~~~~~~~~
 
-- Email: Patrick.Thiem@kontron-ais.com
+- Email: Patrick.Thiem@kontron-ais.com and Maik.Pertermann@kontron-ais.com
