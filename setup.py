@@ -2,8 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='PyEqCloud',
-    version='0.1.1',
+    version='0.1.3',
     description='Gather Data via a REST-Connection from the Kontron AIS GmbH EquipmentCloud',
+    long_description='PyEqCloud is a Python module for data extraction with the EquipmentCloud of Kontron AIS GmbH using a REST connection. PyEqCloud is distributed under the MIT license.',
     author='Patrick Thiem',
     author_email='Patrick.Thiem@kontron-ais.com',
     py_modules=["PyEqCloud"],
@@ -19,9 +20,9 @@ setup(
     keywords='equipment cloud',
     packages=find_packages(exclude=['docs','tests*']),
     install_requires=[
-        'requests>=2.22.0,<2.23.0',
-        'pandas>=0.25.3,<1.0.3',
-        'tqdm>=4.39.0,<4.46.0',
+        'requests>=2.22.0',
+        'pandas>=0.23.4',
+        'tqdm>=4.39.0',
         ],
     data_files=None,
     python_requires='>=3.6',
