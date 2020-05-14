@@ -77,12 +77,10 @@ The following credential informations are needed to make REST requests:
 --> If the user is logged into a valid EquipmentCloud Account, the customer ID can also be found in the URL (bold number in example) 
 example: https:// eqcloud.ais-automation.com/**C168170000**/f?p=60000:LOGIN
 
-For more details, please download or see the prepared jupyter notebook in the folder "Jupyter".
+For more details, please download or view the prepared jupyter notebook in the folder "Jupyter".
 
 
 Communication
 ~~~~~~~~~~~~~
 
 - Email: Patrick.Thiem@kontron-ais.com and Maik.Pertermann@kontron-ais.com
-
-test
