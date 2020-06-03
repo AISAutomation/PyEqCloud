@@ -73,7 +73,7 @@ class EqCloudRestApiWrapper:
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
-        EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
+        EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         fkt_columns_to_numbers(EQ_Cloud_DataFrame)
         return EQ_Cloud_DataFrame
     
