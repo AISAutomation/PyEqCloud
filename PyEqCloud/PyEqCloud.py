@@ -42,24 +42,17 @@ class EqCloudRestApiWrapper:
             next_step = True
             step = 1
             while next_step:
-#                 code = {
-#                         'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
-#                         'step':step
-#                         }
                 code = {
-                         'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+'"'+"}",
-                         'step':step
-                         }
-                #print(code)
-                response = requests.get(self.url + equipment + "/processvalues/" + columnList[i].strip().replace("'","") + "",
+                        'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                        'step':step
+                        }
+                response = requests.get(self.url + equipment + "/processvalues/" + str(columnList[i]).strip().replace("'","") + "",
                                          auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                          params=code,
                                          verify=False)
                 json = response.json()
-                #print(json)
                 df = pd.DataFrame.from_dict(json['items'])
-                #dd = pd.DataFrame.from_dict(json['controls'])
-                df['ChannelID'] = columnList[i].strip().replace("'","")
+                df['ChannelID'] = str(columnList[i]).strip().replace("'","")
                 if "value_string" in df.columns:
                     df.rename(columns={'value_string': 'value'}, inplace=True)
                 if json['controls'][0]['next'] is not None:
@@ -67,14 +60,18 @@ class EqCloudRestApiWrapper:
                 else:
                     next_step = False
                 frames = [pagination_df,df]
-                pagination_df = pd.concat(frames,sort=True)
+                pagination_df = pd.concat(frames,sort=False)
             frames = [temp_df,pagination_df]
-            temp_df = pd.concat(frames,sort=True)
+            temp_df = pd.concat(frames,sort=False)
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
-        EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
+        if 'material_id' in temp_df.columns:
+            EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
+        else:
+            EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         fkt_columns_to_numbers(EQ_Cloud_DataFrame)
+        EQ_Cloud_DataFrame.sort_index(inplace=True)
         return EQ_Cloud_DataFrame
     
     def request_alarms(self, equipment, startTime, endTime):
