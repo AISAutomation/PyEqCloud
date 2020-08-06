@@ -43,7 +43,7 @@ class EqCloudRestApiWrapper:
             step = 1
             while next_step:
                 code = {
-                        'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                        'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                         'step':step
                         }
                 response = requests.get(self.url + equipment + "/processvalues/" + str(columnList[i]).strip().replace("'","") + "",
@@ -80,7 +80,7 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
                    }
             response = requests.get(self.url + equipment + "/alarms"+"",
@@ -107,7 +107,7 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
                    }
             response = requests.get(self.url + equipment + "/states"+"",
@@ -134,7 +134,7 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
                    }
             response = requests.get(self.url + equipment + "/units"+"",
