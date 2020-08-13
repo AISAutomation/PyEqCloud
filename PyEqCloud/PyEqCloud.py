@@ -3,6 +3,7 @@ import pandas as pd
 from pandas.io.json import json_normalize                      
 import getpass
 from tqdm import tqdm
+from datetime import timedelta
 
 import warnings; warnings.filterwarnings('ignore')
 
@@ -66,6 +67,7 @@ class EqCloudRestApiWrapper:
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
+        temp_df.timestamp = temp_df.timestamp + timedelta(hours=2)
         if 'material_id' in temp_df.columns:
             EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         else:
@@ -99,6 +101,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2)
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2)
         return pagination_df
     
     def request_states(self, equipment, startTime, endTime):
@@ -126,6 +130,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2)
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2)
         return pagination_df
     
     def request_units(self, equipment, startTime, endTime):
@@ -151,6 +157,7 @@ class EqCloudRestApiWrapper:
             pagination_df = pd.concat(frames,sort=True)
             pagination_df["timestamp"]= pagination_df["timestamp"].str.rstrip('Z') 
             pagination_df.timestamp = pd.to_datetime(pagination_df.timestamp)
+            pagination_df.timestamp = pagination_df.timestamp + timedelta(hours=2)
         return pagination_df
 
     
