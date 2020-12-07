@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='PyEqCloud',
-    version='0.1.8',
+    version='0.1.9',
     description='Gather Data via a REST-Connection from the Kontron AIS GmbH EquipmentCloud',
     long_description='PyEqCloud is a Python module for data extraction with the EquipmentCloud of Kontron AIS GmbH using a REST connection. PyEqCloud is distributed under the MIT license.',
     author='Patrick Thiem',
