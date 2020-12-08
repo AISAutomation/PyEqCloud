@@ -56,6 +56,8 @@ class EqCloudRestApiWrapper:
                 df['ChannelID'] = str(columnList[i]).strip().replace("'","")
                 if "value_string" in df.columns:
                     df.rename(columns={'value_string': 'value'}, inplace=True)
+                if "value_boolean" in df.columns:
+                    df.rename(columns={'value_boolean': 'value'}, inplace=True)
                 if json['controls'][0]['next'] is not None:
                     step += 1
                 else:
