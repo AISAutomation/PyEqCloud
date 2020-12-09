@@ -17,7 +17,7 @@ def set_user_creds():
     print('')
     #return user, pwd
     
-## umwandeln aller columns in numbers
+## umwandeln aller columns in numbers ##
 def fkt_columns_to_numbers(df_input): 
     for i_col in tqdm(df_input.columns):
         # converting to numeric
@@ -69,7 +69,7 @@ class EqCloudRestApiWrapper:
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
-        temp_df.timestamp = temp_df.timestamp + timedelta(hours=2)
+        temp_df.timestamp = temp_df.timestamp + timedelta(hours=1)
         if 'material_id' in temp_df.columns:
             EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         else:
@@ -103,8 +103,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
-            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2)
-            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=1)
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=1)
         return pagination_df
     
     def request_states(self, equipment, startTime, endTime):
@@ -132,8 +132,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
-            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2)
-            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=1)
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=1)
         return pagination_df
     
     def request_units(self, equipment, startTime, endTime):
@@ -159,7 +159,7 @@ class EqCloudRestApiWrapper:
             pagination_df = pd.concat(frames,sort=True)
             pagination_df["timestamp"]= pagination_df["timestamp"].str.rstrip('Z') 
             pagination_df.timestamp = pd.to_datetime(pagination_df.timestamp)
-            pagination_df.timestamp = pagination_df.timestamp + timedelta(hours=2)
+            pagination_df.timestamp = pagination_df.timestamp + timedelta(hours=1)
         return pagination_df
 
     
