@@ -44,9 +44,9 @@ class EqCloudRestApiWrapper:
             step = 1
             while next_step:
                 code = {
-                        'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                        'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                         'step':step
-                        }
+                        } # Zeitumstellung beachten (Winterzeit +1, Sommerzeit +2)
                 response = requests.get(self.url + equipment + "/processvalues/" + str(columnList[i]).strip().replace("'","") + "",
                                          auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                          params=code,
@@ -69,7 +69,7 @@ class EqCloudRestApiWrapper:
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
-        temp_df.timestamp = temp_df.timestamp + timedelta(hours=1)
+        temp_df.timestamp = temp_df.timestamp + timedelta(hours=2) #Zeitumstellung beachten
         if 'material_id' in temp_df.columns:
             EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         else:
@@ -84,9 +84,9 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
-                   }
+                   } #Zeitumstellung beachten
             response = requests.get(self.url + equipment + "/alarms"+"",
                                      auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                      params=code,
@@ -103,8 +103,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
-            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=1)
-            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=1)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2) #Zeitumstellung beachten
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2) #Zeitumstellung beachten
         return pagination_df
     
     def request_states(self, equipment, startTime, endTime):
@@ -113,9 +113,9 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
-                   }
+                   } #Zeitumstellung beachten
             response = requests.get(self.url + equipment + "/states"+"",
                                      auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                      params=code,
@@ -132,8 +132,8 @@ class EqCloudRestApiWrapper:
             pagination_df["ts_end"]= pagination_df["ts_end"].str.rstrip('Z') 
             pagination_df.ts_start = pd.to_datetime(pagination_df.ts_start)
             pagination_df.ts_end = pd.to_datetime(pagination_df.ts_end)
-            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=1)
-            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=1)
+            pagination_df.ts_start = pagination_df.ts_start + timedelta(hours=2) #Zeitumstellung beachten
+            pagination_df.ts_end = pagination_df.ts_end + timedelta(hours=2) #Zeitumstellung beachten
         return pagination_df
     
     def request_units(self, equipment, startTime, endTime):
@@ -142,9 +142,9 @@ class EqCloudRestApiWrapper:
         next_step = True
         while next_step:
             code = {
-                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+01:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+01:00"+'"'+"}",
+                    'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
-                   }
+                   } #Zeitumstellung beachten
             response = requests.get(self.url + equipment + "/units"+"",
                                      auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                      params=code,
@@ -159,7 +159,7 @@ class EqCloudRestApiWrapper:
             pagination_df = pd.concat(frames,sort=True)
             pagination_df["timestamp"]= pagination_df["timestamp"].str.rstrip('Z') 
             pagination_df.timestamp = pd.to_datetime(pagination_df.timestamp)
-            pagination_df.timestamp = pagination_df.timestamp + timedelta(hours=1)
+            pagination_df.timestamp = pagination_df.timestamp + timedelta(hours=2) #Zeitumstellung beachten
         return pagination_df
 
     
