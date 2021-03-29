@@ -1,3 +1,5 @@
+# ToDo: Winter- und Sommerzeit-Anpassung automatisch integrieren
+
 import requests
 import pandas as pd
 from pandas.io.json import json_normalize                      
@@ -46,7 +48,7 @@ class EqCloudRestApiWrapper:
                 code = {
                         'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                         'step':step
-                        } # Zeitumstellung beachten (Winterzeit +1, Sommerzeit +2)
+                        } # Zeitumstellung beachten nach startTime und endTime (Winterzeit +1, Sommerzeit +2)
                 response = requests.get(self.url + equipment + "/processvalues/" + str(columnList[i]).strip().replace("'","") + "",
                                          auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                          params=code,
@@ -69,7 +71,7 @@ class EqCloudRestApiWrapper:
         EQ_Cloud_DataFrame = pd.DataFrame()
         temp_df["timestamp"]= temp_df["timestamp"].str.rstrip('Z') 
         temp_df.timestamp = pd.to_datetime(temp_df.timestamp)
-        temp_df.timestamp = temp_df.timestamp + timedelta(hours=2) #Zeitumstellung beachten
+        temp_df.timestamp = temp_df.timestamp + timedelta(hours=2) # Zeitumstellung beachten (Winterzeit +1, Sommerzeit +2)
         if 'material_id' in temp_df.columns:
             EQ_Cloud_DataFrame = temp_df.pivot_table(values='value', index=['timestamp','material_id'], columns=['ChannelID'], aggfunc=lambda x: ' '.join(str(v) for v in x))
         else:
@@ -86,7 +88,7 @@ class EqCloudRestApiWrapper:
             code = {
                     'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
-                   } #Zeitumstellung beachten
+                   } #Zeitumstellung beachten nach startTime und endTime (Winterzeit +1, Sommerzeit +2)
             response = requests.get(self.url + equipment + "/alarms"+"",
                                      auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                      params=code,
@@ -115,7 +117,7 @@ class EqCloudRestApiWrapper:
             code = {
                     'qp':"{"+'"'+"ts_start"+'":'+'"'+startTime+"+02:00"+'"'+","+'"'+"ts_end"+'"'+':'+'"'+endTime+"+02:00"+'"'+"}",
                     'step':step
-                   } #Zeitumstellung beachten
+                   } #Zeitumstellung beachten nach startTime und endTime (Winterzeit +1, Sommerzeit +2)
             response = requests.get(self.url + equipment + "/states"+"",
                                      auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                      params=code,

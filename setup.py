@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='PyEqCloud',
-    version='0.2.4',
+    version='0.2.5',
     description='Gather Data via a REST-Connection from the Kontron AIS GmbH EquipmentCloud',
     long_description='PyEqCloud is a Python module for data extraction with the EquipmentCloud of Kontron AIS GmbH using a REST connection. PyEqCloud is distributed under the MIT license.',
-    author='Patrick Thiem',
-    author_email='Patrick.Thiem@kontron-ais.com',
+    author='Maik Pertermann, until March 2021 Patrick Thiem ',
+    author_email='maik.pertermann@kontron-ais.com, Patrick.Thiem@kontron-ais.com',
     py_modules=["PyEqCloud"],
     package_dir={'': 'PyEqCloud'},
     license='MIT',
