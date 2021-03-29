@@ -7,7 +7,7 @@ PyEqCloud is distributed under the MIT license.
 
 The project was started in April 2020 by Patrick Thiem and Maik Pertermann.
 
-It is currently maintained by Patrick Thiem and Maik Pertermann.
+It is currently maintained by Maik Pertermann and until March 2021 by Patrick Thiem.
 
 
 
